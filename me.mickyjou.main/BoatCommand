@@ -1,0 +1,43 @@
+package me.mickyjou.main;
+
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import net.md_5.bungee.api.ChatColor;
+
+public class BoatCommand implements CommandExecutor {
+
+	private GemOptions plugin;
+
+	public BoatCommand(GemOptions plugin) {
+		this.plugin = plugin;
+
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		Player p = (Player) sender;
+
+		if (args.length == 0) {
+			if (100 <= GemCommands.getGems(p.getUniqueId())) {
+				ItemStack boat = new ItemStack(Material.BOAT);
+				p.getInventory().addItem(boat);
+				GemCommands.removeGems(p.getName(), 100);
+				p.sendMessage(
+						ChatColor.GRAY + "You got a " + ChatColor.GOLD + "boat" + ChatColor.GRAY + " for 100 gems!");
+			} else {
+				p.sendMessage(ChatColor.RED + "You don't have enough Gems for that!");
+			}
+
+		} else {
+			p.sendMessage(ChatColor.RED + "Please use /change!");
+		}
+
+		return false;
+	}
+
+}
