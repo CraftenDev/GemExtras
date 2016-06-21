@@ -1,0 +1,8 @@
+name: GemOptions
+version: VERSION
+main: me.mickyjou.plugins.gems.gemoptions.GemOptions
+author: Mickyjou
+commands:
+     gems:
+          description: Gem commands
+          usage: /gems (add|remove|set) [amount]
