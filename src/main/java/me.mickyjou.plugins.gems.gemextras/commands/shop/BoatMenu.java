@@ -34,14 +34,12 @@ public class BoatMenu extends SinglePageView {
         super("Buy boats", 9);
 
         for (final Material material : BOATS) {
-            Button button = new Button(material, null);
-            button.setOnClick(new ClickListener() {
+            Button button = new BuyButton(5, material, null) {
                 @Override
-                public void clicked(InventoryClickEvent inventoryClickEvent) {
-                    //TODO
-                    //ItemStack boat = new ItemStack(material);
+                protected void onBuyItem(Player player) {
+                    player.getInventory().addItem(new ItemStack(material));
                 }
-            });
+            };
             addElement(button);
         }
     }
