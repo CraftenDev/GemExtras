@@ -1,8 +1,8 @@
-name: GemOptions
+name: GemExtras
 version: VERSION
-main: me.mickyjou.plugins.gems.gemoptions.GemOptions
+main: me.mickyjou.plugins.gems.gemextras.GemExtras
 author: Mickyjou
 commands:
      gems:
-          description: Gem commands
-          usage: /gems (add|remove|set) [amount]
+          description: Open the gem shop.
+          usage: /gemshop

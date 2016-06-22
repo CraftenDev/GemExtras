@@ -1,4 +1,4 @@
-package me.mickyjou.plugins.gems.gemoptions.listeners;
+package me.mickyjou.plugins.gems.gemextras.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

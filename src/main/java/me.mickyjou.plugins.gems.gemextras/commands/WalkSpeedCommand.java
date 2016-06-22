@@ -1,4 +1,4 @@
-package me.mickyjou.plugins.gems.gemoptions.commands;
+package me.mickyjou.plugins.gems.gemextras.commands;
 
 import me.mickyjou.plugins.gems.api.GemProvider;
 import net.md_5.bungee.api.ChatColor;
