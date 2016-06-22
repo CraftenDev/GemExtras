@@ -1,22 +1,35 @@
 package me.mickyjou.plugins.gems.gemextras;
 
-import me.mickyjou.plugins.gems.gemextras.commands.shop.ItemStacks;
-import me.mickyjou.plugins.gems.gemextras.listeners.BoatClickListener;
+import de.craften.plugins.mcguilib.ViewManager;
+import me.mickyjou.plugins.gems.gemextras.commands.shop.GemShop;
 import me.mickyjou.plugins.gems.gemextras.listeners.ChangeListener;
+import me.mickyjou.plugins.gems.gemextras.listeners.DoubleJumpListener;
 import me.mickyjou.plugins.gems.gemextras.listeners.WalkSpeedListener;
 import me.mickyjou.plugins.gems.gemextras.listeners.WalkStopListener;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GemExtras extends JavaPlugin {
+    private ViewManager viewManager;
+
     public void onEnable() {
         saveDefaultConfig();
+        viewManager = new ViewManager(this);
 
-        getServer().getPluginManager().registerEvents(new BoatClickListener(), (this));
-        getServer().getPluginManager().registerEvents(new WalkSpeedListener(), (this));
-        getServer().getPluginManager().registerEvents(new ChangeListener(), (this));
-        getServer().getPluginManager().registerEvents(new WalkStopListener(), (this));
-        getServer().getPluginManager().registerEvents(new DoubleJumpListeners(), (this));
+        getServer().getPluginManager().registerEvents(new WalkSpeedListener(), this);
+        getServer().getPluginManager().registerEvents(new ChangeListener(), this);
+        getServer().getPluginManager().registerEvents(new WalkStopListener(), this);
+        getServer().getPluginManager().registerEvents(new DoubleJumpListener(), this);
+    }
 
-        getCommand("gemshop").setExecutor(new ItemStacks());
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equals("gemshop") && sender instanceof Player) {
+            viewManager.showView((Player) sender, new GemShop((Player) sender));
+            return true;
+        }
+        return false;
     }
 }

@@ -5,11 +5,11 @@ import de.craften.plugins.mcguilib.ClickListener;
 import de.craften.plugins.mcguilib.GuiElement;
 import de.craften.plugins.mcguilib.SinglePageView;
 import me.mickyjou.plugins.gems.api.GemProvider;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 
 /**
  * The main view of the gem shop.
@@ -23,7 +23,9 @@ public class GemShop extends SinglePageView {
 
         addElement(createGemIcon());
         addElement(createWalkSpeedButton());
+        addElement(createDoubleJumpButton());
         addElement(createBoatButton());
+        addElement(createFireworksButton());
     }
 
     private GuiElement createGemIcon() {
@@ -38,7 +40,22 @@ public class GemShop extends SinglePageView {
     private GuiElement createWalkSpeedButton() {
         Button button = new Button(
                 Material.DIAMOND_BOOTS,
-                ChatColor.GOLD + "Double Jump",
+                ChatColor.GOLD + "Speed Walk",
+                "Run like a cheetah!"
+        );
+        button.setOnClick(new ClickListener() {
+            @Override
+            public void clicked(InventoryClickEvent inventoryClickEvent) {
+                getViewManager().showView(player, new WalkSpeedMenu(player));
+            }
+        });
+        return button;
+    }
+
+    private GuiElement createDoubleJumpButton() {
+        Button button = new Button(
+                Material.SLIME_BLOCK,
+                ChatColor.GREEN + "Double Jump",
                 "Jump like a kangaroo!"
         );
         button.setOnClick(new ClickListener() {
@@ -62,6 +79,27 @@ public class GemShop extends SinglePageView {
                 getViewManager().showView(player, new BoatMenu(player));
             }
         });
+        return button;
+    }
+
+    private GuiElement createFireworksButton() {
+        // TODO show a fireworks menu with different fireworks
+        Button button = new BuyButton(10, Material.FIREWORK, ChatColor.YELLOW + "Buy fireworks", "10 Gems") {
+            @Override
+            protected void onBuyItem(Player player) {
+                ItemStack rockets = new ItemStack(Material.FIREWORK, 5);
+                FireworkMeta meta = (FireworkMeta) rockets.getItemMeta();
+                meta.clearEffects();
+                meta.addEffect(FireworkEffect.builder()
+                        .withColor(Color.RED)
+                        .withFade(Color.YELLOW)
+                        .withFlicker()
+                        .build());
+                rockets.setItemMeta(meta);
+                player.getInventory().addItem(rockets);
+            }
+        };
+        button.setNumber(5);
         return button;
     }
 }
