@@ -1,4 +1,4 @@
-package me.mickyjou.main;
+package me.mickyjou.plugins.gems.gemextras;
 
 import java.util.HashSet;
 
@@ -36,7 +36,7 @@ public class DoubleJumpListeners implements Listener {
 			p.setFlying(false);
 			p.setVelocity(p.getLocation().getDirection().multiply(1.5D).add(new Vector(0, 0.8, 0)));
 			doublejump.add(p.getName());
-			Bukkit.getScheduler().scheduleSyncDelayedTask(GemOptions.getInstance(), new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(GemExtras.getInstance(), new Runnable() {
 
 				@Override
 				public void run() {
