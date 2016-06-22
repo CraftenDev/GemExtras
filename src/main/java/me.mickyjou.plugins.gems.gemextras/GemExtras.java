@@ -15,6 +15,7 @@ public class GemExtras extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WalkSpeedListener(), (this));
         getServer().getPluginManager().registerEvents(new ChangeListener(), (this));
         getServer().getPluginManager().registerEvents(new WalkStopListener(), (this));
+        getServer().getPluginManager().registerEvents(new DoubleJumpListeners(), (this));
 
         getCommand("gemshop").setExecutor(new ItemStacks());
     }
