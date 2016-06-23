@@ -3,6 +3,6 @@ version: VERSION
 main: me.mickyjou.plugins.gems.gemextras.GemExtras
 author: Mickyjou
 commands:
-     gems:
+     gemshop:
           description: Open the gem shop.
           usage: /gemshop

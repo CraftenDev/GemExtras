@@ -16,8 +16,8 @@ public abstract class BuyButton extends Button {
     private final int cost;
 
 
-    public BuyButton(final int cost, Material material, byte data, String title, String... description) {
-        super(material, data, title, description);
+    public BuyButton(final int cost, Material material, byte data, String title) {
+        super(material, data, title, cost + " Gems");
         this.cost = cost;
         setOnClick(new ClickListener() {
             @Override
@@ -35,8 +35,8 @@ public abstract class BuyButton extends Button {
         });
     }
 
-    public BuyButton(int cost, Material material, String title, String... description) {
-        this(cost, material, (byte) 0, title, description);
+    public BuyButton(int cost, Material material, String title) {
+        this(cost, material, (byte) 0, title);
     }
 
     protected abstract void onBuyItem(Player player);

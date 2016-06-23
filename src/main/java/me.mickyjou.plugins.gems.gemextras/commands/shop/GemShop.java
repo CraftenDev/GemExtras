@@ -18,14 +18,15 @@ public class GemShop extends SinglePageView {
     private final Player player;
 
     public GemShop(Player player) {
-        super(ChatColor.GOLD + "Gem Shop", 9);
+        super("★ Gem Shop ★", 9);
         this.player = player;
 
-        addElement(createGemIcon());
         addElement(createWalkSpeedButton());
         addElement(createDoubleJumpButton());
         addElement(createBoatButton());
         addElement(createFireworksButton());
+
+        insertElement(8, createGemIcon());
     }
 
     private GuiElement createGemIcon() {
@@ -46,7 +47,7 @@ public class GemShop extends SinglePageView {
         button.setOnClick(new ClickListener() {
             @Override
             public void clicked(InventoryClickEvent inventoryClickEvent) {
-                getViewManager().showView(player, new WalkSpeedMenu(player));
+                getViewManager().showView(player, new SpeedWalkMenu(player));
             }
         });
         return button;
@@ -84,7 +85,7 @@ public class GemShop extends SinglePageView {
 
     private GuiElement createFireworksButton() {
         // TODO show a fireworks menu with different fireworks
-        Button button = new BuyButton(10, Material.FIREWORK, ChatColor.YELLOW + "Buy fireworks", "10 Gems") {
+        Button button = new BuyButton(10, Material.FIREWORK, ChatColor.YELLOW + "Buy fireworks") {
             @Override
             protected void onBuyItem(Player player) {
                 ItemStack rockets = new ItemStack(Material.FIREWORK, 5);

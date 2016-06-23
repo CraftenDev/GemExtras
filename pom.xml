@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>GemOptions</name>
+    <name>GemExtras</name>
     <groupId>de.mickyjou.plugins</groupId>
-    <artifactId>GemOptions</artifactId>
+    <artifactId>GemExtras</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
@@ -43,6 +43,7 @@
             <groupId>de.mickyjou.plugins</groupId>
             <artifactId>GemApi</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

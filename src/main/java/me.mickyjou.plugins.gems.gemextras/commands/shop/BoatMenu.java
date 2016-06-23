@@ -33,6 +33,13 @@ public class BoatMenu extends SinglePageView {
     public BoatMenu(Player player) {
         super("Buy boats", 9);
 
+        addElement(new BackButton("Back", new ClickListener() {
+            @Override
+            public void clicked(InventoryClickEvent inventoryClickEvent) {
+                getViewManager().showView(getViewer(), new GemShop(getViewer()));
+            }
+        }));
+
         for (final Material material : BOATS) {
             Button button = new BuyButton(5, material, null) {
                 @Override

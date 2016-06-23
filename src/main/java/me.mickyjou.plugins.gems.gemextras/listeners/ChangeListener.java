@@ -1,19 +1,13 @@
 package me.mickyjou.plugins.gems.gemextras.listeners;
 
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemStack;
-
-import VirtualInventory.ItemStacks;
-import net.md_5.bungee.api.ChatColor;
 
 public class ChangeListener implements Listener {
-
-	@EventHandler
-	public void onCangeClick(InventoryClickEvent e) {
+    @EventHandler
+    public void onCangeClick(InventoryClickEvent e) {
+        /*
 		Player p = (Player) e.getWhoClicked();
 		if (e.getInventory().getName().equalsIgnoreCase("Change Diamonds in Gems!")) {
 			e.setCancelled(true);
@@ -40,6 +34,6 @@ public class ChangeListener implements Listener {
 				}
 			}
 		}
-	}
-
+		*/
+    }
 }
