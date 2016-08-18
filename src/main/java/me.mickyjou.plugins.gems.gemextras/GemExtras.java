@@ -2,7 +2,6 @@ package me.mickyjou.plugins.gems.gemextras;
 
 import de.craften.plugins.mcguilib.ViewManager;
 import me.mickyjou.plugins.gems.gemextras.commands.shop.GemShop;
-import me.mickyjou.plugins.gems.gemextras.listeners.ChangeListener;
 import me.mickyjou.plugins.gems.gemextras.listeners.DoubleJumpListener;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -15,8 +14,6 @@ public class GemExtras extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         viewManager = new ViewManager(this);
-
-        getServer().getPluginManager().registerEvents(new ChangeListener(), this);
         getServer().getPluginManager().registerEvents(new DoubleJumpListener(), this);
     }
 
