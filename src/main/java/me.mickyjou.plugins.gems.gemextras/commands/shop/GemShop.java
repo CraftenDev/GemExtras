@@ -26,6 +26,7 @@ public class GemShop extends SinglePageView {
         addElement(createBoatButton());
         addElement(createFireworksButton());
 
+        insertElement(7, createBuyGemsButton());
         insertElement(8, createGemIcon());
     }
 
@@ -36,6 +37,21 @@ public class GemShop extends SinglePageView {
                 ChatColor.GREEN + "You've got " + ChatColor.GOLD + gems + ChatColor.GREEN + " Gems."
         );
 
+    }
+
+    private GuiElement createBuyGemsButton() {
+        Button button = new Button(
+                Material.DIAMOND,
+                ChatColor.DARK_AQUA + "Buy Gems with diamonds",
+                "Get those neat Gems!"
+        );
+        button.setOnClick(new ClickListener() {
+            @Override
+            public void clicked(InventoryClickEvent inventoryClickEvent) {
+                getViewManager().showView(player, new BuyGemsMenu(player));
+            }
+        });
+        return button;
     }
 
     private GuiElement createWalkSpeedButton() {
