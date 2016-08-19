@@ -36,7 +36,7 @@ public class DoubleJumpListener implements Listener {
             event.setCancelled(true);
             player.setAllowFlight(false);
             player.setFlying(false);
-            player.setVelocity(player.getLocation().getDirection().multiply(1.5D).add(new Vector(0, 0.8, 0)));
+            player.setVelocity(player.getVelocity().multiply(2.5D).setY(1.0));
             doublejump.add(player);
             Bukkit.getScheduler().scheduleSyncDelayedTask(GemExtras.getPlugin(GemExtras.class), new Runnable() {
 
