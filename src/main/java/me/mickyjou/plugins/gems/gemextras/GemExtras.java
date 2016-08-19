@@ -1,8 +1,6 @@
 package me.mickyjou.plugins.gems.gemextras;
 
 import de.craften.plugins.mcguilib.ViewManager;
-import me.mickyjou.plugins.gems.gemextras.commands.shop.GemShop;
-import me.mickyjou.plugins.gems.gemextras.listeners.DoubleJumpListener;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

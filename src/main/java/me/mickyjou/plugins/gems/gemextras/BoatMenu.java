@@ -1,4 +1,4 @@
-package me.mickyjou.plugins.gems.gemextras.commands.shop;
+package me.mickyjou.plugins.gems.gemextras;
 
 import de.craften.plugins.mcguilib.*;
 import org.bukkit.Material;

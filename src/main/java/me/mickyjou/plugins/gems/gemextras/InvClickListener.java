@@ -1,4 +1,4 @@
-package me.mickyjou.plugins.gems.gemextras.commands.shop;
+package me.mickyjou.plugins.gems.gemextras;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

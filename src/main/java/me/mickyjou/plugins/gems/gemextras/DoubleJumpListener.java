@@ -1,6 +1,5 @@
-package me.mickyjou.plugins.gems.gemextras.listeners;
+package me.mickyjou.plugins.gems.gemextras;
 
-import me.mickyjou.plugins.gems.gemextras.GemExtras;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.EntityType;
@@ -11,7 +10,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
-import org.bukkit.util.Vector;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,12 +37,10 @@ public class DoubleJumpListener implements Listener {
             player.setVelocity(player.getVelocity().multiply(2.5D).setY(1.0));
             doublejump.add(player);
             Bukkit.getScheduler().scheduleSyncDelayedTask(GemExtras.getPlugin(GemExtras.class), new Runnable() {
-
                 @Override
                 public void run() {
                     doublejump.remove(player);
                 }
-
             }, 4 * 20);
         }
     }
