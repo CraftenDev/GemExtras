@@ -45,7 +45,7 @@ public class BuyGemsMenu extends SinglePageView {
                     Player player = (Player) inventoryClickEvent.getWhoClicked();
                     if (player.getInventory().contains(Material.DIAMOND, diamonds)) {
                         Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().addGems(player, gems);
-                        player.getInventory().remove(new ItemStack(Material.DIAMOND, diamonds));
+                        player.getInventory().removeItem(new ItemStack(Material.DIAMOND, diamonds));
                         player.sendMessage(ChatColor.GREEN + "You just bought " + ChatColor.GOLD + gems + " Gems" + ChatColor.GREEN + ".");
                     } else {
                         player.sendMessage(ChatColor.RED + "You don't have enough diamonds to buy " + gems + " Gems.");
