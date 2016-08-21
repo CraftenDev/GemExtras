@@ -41,9 +41,8 @@
         </dependency>
         <dependency>
             <groupId>de.mickyjou.plugins</groupId>
-            <artifactId>GemApi</artifactId>
+            <artifactId>gemapi-api</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <artifactId>playerdatastore-api</artifactId>
