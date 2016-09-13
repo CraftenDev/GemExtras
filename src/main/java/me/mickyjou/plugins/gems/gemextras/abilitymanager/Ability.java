@@ -4,8 +4,6 @@ import org.bukkit.entity.Player;
 
 /**
  * An ability that can be given to a player.
- *
- * @see AbilityAdapter
  */
 public interface Ability {
     /**
@@ -27,14 +25,16 @@ public interface Ability {
      *
      * @param player player
      */
-    void giveTo(Player player);
+    default void giveTo(Player player) {
+    }
 
     /**
      * Removes this ability from a player. This is also called when the player leaves the server.
      *
-     * @param player
+     * @param player player
      */
-    void removeFrom(Player player);
+    default void removeFrom(Player player) {
+    }
 
     /**
      * Called when this ability was initially given to a player. Don't use this to give the ability
@@ -42,7 +42,8 @@ public interface Ability {
      *
      * @param player player
      */
-    void onActivated(Player player);
+    default void onActivated(Player player) {
+    }
 
     /**
      * Called when this ability expires and was removed from a player that is currently online. Don't use this to
@@ -50,5 +51,6 @@ public interface Ability {
      *
      * @param player player
      */
-    void onExpired(Player player);
+    default void onExpired(Player player) {
+    }
 }

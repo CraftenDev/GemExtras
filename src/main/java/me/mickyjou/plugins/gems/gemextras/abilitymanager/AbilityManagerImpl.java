@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
     }
 
     @Override
-    public void giveAbilityTo(Class<Ability> abilityClass, Player player, final long durationSeconds) {
+    public void giveAbilityTo(Class<? extends Ability> abilityClass, Player player, final long durationSeconds) {
         Ability ability = abilities.get(abilityClass);
         if (ability == null) {
             throw new IllegalStateException("Tried to give unregistered ability " + abilityClass + " to a player");
@@ -89,6 +90,16 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
         if (!renewed.get()) {
             ability.onActivated(player);
         }
+    }
+
+    @Override
+    public void giveAbilityTo(Class<? extends Ability> abilityClass, Player player, Duration duration) {
+        giveAbilityTo(abilityClass, player, duration.getSeconds());
+    }
+
+    @Override
+    public boolean hasAbility(Class<? extends Ability> abilityClass, Player player) {
+        return playerAbilities.containsEntry(player, abilityClass);
     }
 
     @EventHandler

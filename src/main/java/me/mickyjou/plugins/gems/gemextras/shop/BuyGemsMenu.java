@@ -1,4 +1,4 @@
-package me.mickyjou.plugins.gems.gemextras;
+package me.mickyjou.plugins.gems.gemextras.shop;
 
 import de.craften.plugins.mcguilib.Button;
 import de.craften.plugins.mcguilib.ClickListener;

@@ -1,8 +1,12 @@
 package me.mickyjou.plugins.gems.gemextras;
 
 import de.craften.plugins.mcguilib.ViewManager;
+import me.mickyjou.plugins.gems.gemextras.abilities.SpeedWalk;
+import me.mickyjou.plugins.gems.gemextras.abilities.doublejump.DoubleJump;
+import me.mickyjou.plugins.gems.gemextras.abilities.doublejump.DoubleJumpListener;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManagerImpl;
+import me.mickyjou.plugins.gems.gemextras.shop.GemShop;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,8 +20,12 @@ public class GemExtras extends JavaPlugin {
         saveDefaultConfig();
         viewManager = new ViewManager(this);
         abilityManager = new AbilityManagerImpl(this);
-        getServer().getPluginManager().registerEvents(new DoubleJumpListener(), this);
         getServer().getPluginManager().registerEvents(abilityManager, this);
+
+        abilityManager.registerAbility(new DoubleJump());
+        getServer().getPluginManager().registerEvents(new DoubleJumpListener(), this);
+
+        abilityManager.registerAbility(new SpeedWalk());
     }
 
     @Override

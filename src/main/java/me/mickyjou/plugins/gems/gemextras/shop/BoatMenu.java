@@ -1,13 +1,10 @@
-package me.mickyjou.plugins.gems.gemextras;
+package me.mickyjou.plugins.gems.gemextras.shop;
 
 import de.craften.plugins.mcguilib.*;
 import org.bukkit.Material;
-import org.bukkit.TreeSpecies;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.Tree;
 
 /**
  * A menu to buy boats.
