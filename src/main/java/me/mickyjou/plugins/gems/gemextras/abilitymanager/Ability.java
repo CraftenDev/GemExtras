@@ -16,6 +16,13 @@ public interface Ability {
     String getIdentifier();
 
     /**
+     * Gets the display name of this ability.
+     *
+     * @return the display name of this ability
+     */
+    String getDisplayName();
+
+    /**
      * Gives this ability to a player. This is also called after rejoining.
      *
      * @param player player

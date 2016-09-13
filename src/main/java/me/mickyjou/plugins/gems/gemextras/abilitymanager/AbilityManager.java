@@ -21,5 +21,14 @@ public interface AbilityManager {
      * @param player          player
      * @param durationSeconds duration, in seconds, that this ability should last
      */
-    void giveAbilityTo(Class<Ability> abilityClass, Player player, long durationSeconds);
+    void giveAbilityTo(Class<? extends Ability> abilityClass, Player player, long durationSeconds);
+
+    /**
+     * Checks if a player has an ability. The ability needs to be registered with {@link #registerAbility(Ability)} before.
+     *
+     * @param abilityClass class of the ability to check
+     * @param player       player
+     * @return true if the player has the specified ability, false if not
+     */
+    boolean hasAbility(Class<? extends Ability> abilityClass, Player player);
 }
