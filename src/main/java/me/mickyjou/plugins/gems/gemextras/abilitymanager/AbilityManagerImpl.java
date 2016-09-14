@@ -84,6 +84,7 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
         });
 
         if (!playerAbilities.containsEntry(player, abilityClass)) {
+            playerAbilities.put(player, abilityClass);
             ability.giveTo(player);
         }
 
