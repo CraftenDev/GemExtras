@@ -15,6 +15,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,15 +34,15 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
 
         checkerTaskId = Bukkit.getServer().getScheduler().runTaskTimer(plugin, () -> {
             final long now = new Date().getTime();
-            playerAbilities.keys().forEach((player) -> {
+            new ArrayList<>(playerAbilities.keys()).forEach((player) -> {
                 PlayerDataStore store = getStore(player);
-                playerAbilities.get(player).forEach((abilityClass) -> {
+                new ArrayList<>(playerAbilities.get(player)).forEach((abilityClass) -> {
                     Ability ability = abilities.get(abilityClass);
                     try {
                         if (getEndTime(store, ability).get() < now) {
                             ability.removeFrom(player);
                             ability.onExpired(player);
-                            playerAbilities.remove(player, abilityClass);
+                            playerAbilities.get(player).remove(abilityClass);
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         // ignore
