@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
  */
 public class Fireworks extends SimpleProduct {
     public Fireworks() {
-        super(Material.FIREWORK, ChatColor.YELLOW + "Buy fireworks", 10);
+        super(Material.FIREWORK, ChatColor.YELLOW + "Fireworks", 10);
     }
 
     @Override

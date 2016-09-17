@@ -19,7 +19,7 @@ public class DoubleJump extends ProductGroup {
     public DoubleJump() {
         super(ChatColor.GREEN + "Double Jump", new ItemStack(Material.SLIME_BLOCK), Collections.singletonList("Jump like a kangaroo!"));
 
-        addItem(new SimpleProduct(Material.SLIME_BLOCK, ChatColor.GOLD + "1 hour", 2) {
+        addItem(new SimpleProduct(Material.SLIME_BLOCK, ChatColor.GOLD + "DoubleJump (1 hour)", 2) {
             @Override
             public void onBought(Player player) {
                 GemExtras.getPlugin(GemExtras.class).getAbilityManager().giveAbilityTo(DoubleJumpAbility.class, player, Duration.ofHours(1));
