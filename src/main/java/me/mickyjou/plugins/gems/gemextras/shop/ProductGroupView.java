@@ -84,7 +84,6 @@ public class ProductGroupView extends MultiPageView {
         if (Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().removeGems(getViewer(), product.getCost())) {
             try {
                 product.onBought(getViewer());
-                Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().addGems(getViewer(), product.getCost());
                 TextBuilder.create("You bought ").green()
                         .append(ChatColor.stripColor(product.getDisplayName())).gold()
                         .append(" for ").green()
