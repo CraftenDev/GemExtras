@@ -9,13 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
-import java.util.List;
-
 /**
  * Fireworks (only one right now).
  */
 public class Fireworks extends SimpleProduct {
-    protected Fireworks(Material material, String displayName, int cost, List<String> description) {
+    public Fireworks() {
         super(Material.FIREWORK, ChatColor.YELLOW + "Buy fireworks", 10);
     }
 

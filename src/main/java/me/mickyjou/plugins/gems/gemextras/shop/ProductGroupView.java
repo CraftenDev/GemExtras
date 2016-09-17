@@ -3,13 +3,17 @@ package me.mickyjou.plugins.gems.gemextras.shop;
 import de.craften.plugins.mcguilib.Button;
 import de.craften.plugins.mcguilib.GuiElement;
 import de.craften.plugins.mcguilib.MultiPageView;
+import de.craften.plugins.mcguilib.text.TextBuilder;
 import me.mickyjou.plugins.gems.api.GemProvider;
+import me.mickyjou.plugins.gems.gemextras.GemExtras;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.logging.Level;
 
 /**
  * A view for a product group.
@@ -67,7 +71,35 @@ public class ProductGroupView extends MultiPageView {
     }
 
     private void buyProduct(Product product) {
-        // TODO
+        if (Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().removeGems(getViewer(), product.getCost())) {
+            try {
+                product.onBought(getViewer());
+                Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().addGems(getViewer(), product.getCost());
+                TextBuilder.create("You bought ").green()
+                        .append(ChatColor.stripColor(product.getDisplayName())).gold()
+                        .append(" for ").green()
+                        .append(product.getCost() + " Gems").gold()
+                        .append(".").green()
+                        .sendTo(getViewer());
+            } catch (Exception e) {
+                GemExtras.getPlugin(GemExtras.class).getLogger().log(Level.WARNING, "Buying " + ChatColor.stripColor(product.getDisplayName()) + " failed", e);
+                Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().addGems(getViewer(), product.getCost());
+                TextBuilder.create("An error occurred while buying ").red()
+                        .append(ChatColor.stripColor(product.getDisplayName())).gold()
+                        .append(". Your Gems were refunded. Please report this problem to the server operators.").red()
+                        .sendTo(getViewer());
+            }
+        } else {
+            int gems = Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().getGems(getViewer());
+            TextBuilder.create("You don't have enough Gems to buy ").red()
+                    .append(ChatColor.stripColor(product.getDisplayName())).gold()
+                    .append(" (").red()
+                    .append(product.getCost() + " Gems").gold()
+                    .append(" required, you only have ").red()
+                    .append(gems + "").gold()
+                    .append(").").red()
+                    .sendTo(getViewer());
+        }
     }
 
     private GuiElement createGemIcon() {
