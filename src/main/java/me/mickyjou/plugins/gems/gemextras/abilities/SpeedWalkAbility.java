@@ -3,7 +3,7 @@ package me.mickyjou.plugins.gems.gemextras.abilities;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.Ability;
 import org.bukkit.entity.Player;
 
-public class SpeedWalk implements Ability {
+public class SpeedWalkAbility implements Ability {
     @Override
     public String getIdentifier() {
         return "gemextras.SpeedWalk";

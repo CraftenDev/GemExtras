@@ -1,15 +1,17 @@
-package me.mickyjou.plugins.gems.gemextras.shop;
+package me.mickyjou.plugins.gems.gemextras.shop.products;
 
-import de.craften.plugins.mcguilib.*;
+import me.mickyjou.plugins.gems.gemextras.shop.ProductGroup;
+import me.mickyjou.plugins.gems.gemextras.shop.SimpleProduct;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collections;
+
 /**
- * A menu to buy boats.
+ * Buy multiple boats.
  */
-public class BoatMenu extends SinglePageView {
+public class Boats extends ProductGroup {
     private static final Material[] BOATS;
 
     static {
@@ -27,24 +29,16 @@ public class BoatMenu extends SinglePageView {
         }
     }
 
-    public BoatMenu(Player player) {
-        super("Buy boats", 9);
-
-        addElement(new BackButton("Back", new ClickListener() {
-            @Override
-            public void clicked(InventoryClickEvent inventoryClickEvent) {
-                getViewManager().showView(getViewer(), new GemShop(getViewer()));
-            }
-        }));
+    public Boats() {
+        super("Buy boats", new ItemStack(Material.BOAT), Collections.singletonList("Aye, pirate, get a boat and sail the sea!"));
 
         for (final Material material : BOATS) {
-            Button button = new BuyButton(5, material, null) {
+            addItem(new SimpleProduct(material, null, 5) {
                 @Override
-                protected void onBuyItem(Player player) {
+                public void onBought(Player player) {
                     player.getInventory().addItem(new ItemStack(material));
                 }
-            };
-            addElement(button);
+            });
         }
     }
 }

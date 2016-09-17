@@ -21,7 +21,7 @@ public class DoubleJumpListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (player.getGameMode().equals(GameMode.SURVIVAL) && DoubleJump.hasAbility(player)) {
+        if (player.getGameMode().equals(GameMode.SURVIVAL) && DoubleJumpAbility.hasAbility(player)) {
             if (player.getLocation().add(0, -1, 0).getBlock().getType().isSolid()) {
                 player.setAllowFlight(true);
             }
@@ -31,7 +31,7 @@ public class DoubleJumpListener implements Listener {
     @EventHandler
     public void onFlight(PlayerToggleFlightEvent event) {
         final Player player = event.getPlayer();
-        if (player.getGameMode().equals(GameMode.SURVIVAL) && DoubleJump.hasAbility(player)) {
+        if (player.getGameMode().equals(GameMode.SURVIVAL) && DoubleJumpAbility.hasAbility(player)) {
             event.setCancelled(true);
             player.setAllowFlight(false);
             player.setFlying(false);

@@ -4,7 +4,7 @@ import me.mickyjou.plugins.gems.gemextras.GemExtras;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.Ability;
 import org.bukkit.entity.Player;
 
-public class DoubleJump implements Ability {
+public class DoubleJumpAbility implements Ability {
     @Override
     public String getIdentifier() {
         return "gemextras.DoubleJump";
@@ -16,6 +16,6 @@ public class DoubleJump implements Ability {
     }
 
     static boolean hasAbility(Player player) {
-        return GemExtras.getPlugin(GemExtras.class).getAbilityManager().hasAbility(DoubleJump.class, player);
+        return GemExtras.getPlugin(GemExtras.class).getAbilityManager().hasAbility(DoubleJumpAbility.class, player);
     }
 }
