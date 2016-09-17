@@ -13,6 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -52,7 +54,15 @@ public class ProductGroupView extends MultiPageView {
                     meta.setDisplayName(item.getDisplayName());
                 }
                 if (item.getDescription() != null) {
-                    meta.setLore(item.getDescription());
+                    if (item instanceof Product) {
+                        List<String> lore = Collections.singletonList(ChatColor.GOLD + "" + ((Product) item).getCost() + " Gems");
+                        lore.addAll(item.getDescription());
+                        meta.setLore(lore);
+                    } else {
+                        meta.setLore(item.getDescription());
+                    }
+                } else if (item instanceof Product) {
+                    meta.setLore(Collections.singletonList(ChatColor.GOLD + "" + ((Product) item).getCost() + " Gems"));
                 }
                 itemStack.setItemMeta(meta);
                 return itemStack;
