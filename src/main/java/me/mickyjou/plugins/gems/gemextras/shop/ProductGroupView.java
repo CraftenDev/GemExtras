@@ -26,7 +26,7 @@ public class ProductGroupView extends MultiPageView {
     private final ProductGroupView previous;
 
     public ProductGroupView(ProductGroup productGroup, ProductGroupView previous) {
-        super(productGroup.getDisplayName(), (int) Math.ceil(productGroup.getItems().size() / 9.0) * 9);
+        super(productGroup.getTitle(), (int) Math.ceil(productGroup.getItems().size() / 9.0) * 9);
         this.previous = previous;
 
         for (ShopItem item : productGroup.getItems()) {

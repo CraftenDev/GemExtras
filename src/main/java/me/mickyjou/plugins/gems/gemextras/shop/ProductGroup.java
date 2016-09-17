@@ -36,6 +36,15 @@ public class ProductGroup implements ShopItem {
         return displayName;
     }
 
+    /**
+     * Gets the title of this product group's menu. Defaults to {@link #getDisplayName()}.
+     *
+     * @return the title of this product group's menu
+     */
+    public String getTitle() {
+        return getDisplayName();
+    }
+
     @Override
     public List<String> getDescription() {
         return description;
