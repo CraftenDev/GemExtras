@@ -33,7 +33,7 @@ public class Boats extends ProductGroup {
         super("Buy boats", new ItemStack(Material.BOAT), Collections.singletonList("Aye, pirate, get a boat and sail the sea!"));
 
         for (final Material material : BOATS) {
-            addItem(new SimpleProduct(material, null, 5) {
+            addItem(new SimpleProduct(material, "Boat", 5) {
                 @Override
                 public void onBought(Player player) {
                     player.getInventory().addItem(new ItemStack(material));

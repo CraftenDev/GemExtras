@@ -7,7 +7,10 @@ import me.mickyjou.plugins.gems.gemextras.abilities.doublejump.DoubleJumpListene
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManagerImpl;
 import me.mickyjou.plugins.gems.gemextras.shop.GemShop;
-import me.mickyjou.plugins.gems.gemextras.shop.products.*;
+import me.mickyjou.plugins.gems.gemextras.shop.products.Boats;
+import me.mickyjou.plugins.gems.gemextras.shop.products.DoubleJump;
+import me.mickyjou.plugins.gems.gemextras.shop.products.Fireworks;
+import me.mickyjou.plugins.gems.gemextras.shop.products.SpeedWalk;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -34,7 +37,6 @@ public class GemExtras extends JavaPlugin {
         gemShop.addItem(new SpeedWalk());
         gemShop.addItem(new DoubleJump());
         gemShop.addItem(new Fireworks());
-        gemShop.addItem(new Gems());
     }
 
     @Override

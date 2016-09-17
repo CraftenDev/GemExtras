@@ -104,9 +104,12 @@ public class ProductGroupView extends MultiPageView {
 
     private GuiElement createGemIcon() {
         int gems = Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().getGems(getViewer());
-        return new Button(
+        Button gemButton = new Button(
                 Material.EMERALD,
-                ChatColor.GREEN + "You've got " + ChatColor.GOLD + gems + ChatColor.GREEN + " Gems."
+                ChatColor.GREEN + "You've got " + ChatColor.GOLD + gems + ChatColor.GREEN + " Gems.",
+                "Click to buy more gems."
         );
+        gemButton.setOnClick((e) -> getViewManager().showView(getViewer(), new BuyGemsMenu(this)));
+        return gemButton;
     }
 }
