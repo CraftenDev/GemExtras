@@ -39,6 +39,7 @@ public interface Ability {
     /**
      * Called when this ability was initially given to a player. Don't use this to give the ability
      * to the player but rather to do something special when a player gets it.
+     * This method is not invoked if the player activated the ability while it was paused.
      *
      * @param player player
      */

@@ -28,6 +28,7 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
     private final BukkitTask checkerTaskId;
     private final Map<Class<? extends Ability>, Ability> abilities = new HashMap<>();
     private final Multimap<Player, Class<? extends Ability>> playerAbilities = MultimapBuilder.hashKeys().arrayListValues(3).build();
+    private final Multimap<Player, Class<? extends Ability>> pausedAbilities = MultimapBuilder.hashKeys().arrayListValues(3).build();
 
     public AbilityManagerImpl(Plugin plugin) {
         this.plugin = plugin;
@@ -84,13 +85,15 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
             }
         });
 
-        if (!playerAbilities.containsEntry(player, abilityClass)) {
-            playerAbilities.put(player, abilityClass);
-            ability.giveTo(player);
-        }
+        if (!pausedAbilities.containsEntry(player, abilityClass)) {
+            if (!playerAbilities.containsEntry(player, abilityClass)) {
+                playerAbilities.put(player, abilityClass);
+                ability.giveTo(player);
+            }
 
-        if (!renewed.get()) {
-            ability.onActivated(player);
+            if (!renewed.get()) {
+                ability.onActivated(player);
+            }
         }
     }
 
@@ -106,6 +109,7 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
 
     @Override
     public void pauseAbility(Class<? extends Ability> abilityClass, Player player) {
+        pausedAbilities.put(player, abilityClass);
         if (playerAbilities.get(player).contains(abilityClass)) {
             Ability ability = abilities.get(abilityClass);
             ability.removeFrom(player);
@@ -115,6 +119,7 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
 
     @Override
     public void unpauseAbility(Class<? extends Ability> abilityClass, Player player) {
+        pausedAbilities.remove(player, abilityClass);
         if (!playerAbilities.get(player).contains(abilityClass)) {
             final long now = new Date().getTime();
             PlayerDataStore store = getStore(player);
@@ -153,6 +158,7 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
         playerAbilities.removeAll(event.getPlayer()).stream()
                 .map(abilities::get)
                 .forEach((ability -> ability.removeFrom(event.getPlayer())));
+        pausedAbilities.removeAll(event.getPlayer());
     }
 
     // TODO handle world changes (some abilities may only be allowed in certain worlds)
