@@ -90,6 +90,7 @@ public class ProductGroupView extends MultiPageView {
                         .append(product.getCost() + " Gems").gold()
                         .append(".").green()
                         .sendTo(getViewer());
+                repaint();
             } catch (Exception e) {
                 GemExtras.getPlugin(GemExtras.class).getLogger().log(Level.WARNING, "Buying " + ChatColor.stripColor(product.getDisplayName()) + " failed", e);
                 Bukkit.getServicesManager().getRegistration(GemProvider.class).getProvider().addGems(getViewer(), product.getCost());
