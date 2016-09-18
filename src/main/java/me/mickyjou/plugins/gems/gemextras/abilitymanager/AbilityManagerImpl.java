@@ -104,6 +104,32 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
         return playerAbilities.containsEntry(player, abilityClass);
     }
 
+    @Override
+    public void pauseAbility(Class<? extends Ability> abilityClass, Player player) {
+        if (playerAbilities.get(player).contains(abilityClass)) {
+            Ability ability = abilities.get(abilityClass);
+            ability.removeFrom(player);
+            playerAbilities.get(player).remove(abilityClass);
+        }
+    }
+
+    @Override
+    public void unpauseAbility(Class<? extends Ability> abilityClass, Player player) {
+        if (!playerAbilities.get(player).contains(abilityClass)) {
+            final long now = new Date().getTime();
+            PlayerDataStore store = getStore(player);
+            Ability ability = abilities.get(abilityClass);
+            try {
+                if (getEndTime(store, ability).get() > now) {
+                    ability.giveTo(player);
+                    playerAbilities.get(player).add(abilityClass);
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                // ignore
+            }
+        }
+    }
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         final long now = new Date().getTime();

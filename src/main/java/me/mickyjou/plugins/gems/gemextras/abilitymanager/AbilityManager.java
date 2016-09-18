@@ -43,4 +43,23 @@ public interface AbilityManager {
      * @return true if the player has the specified ability, false if not
      */
     boolean hasAbility(Class<? extends Ability> abilityClass, Player player);
+
+    /**
+     * Removes the given ability from the player until they rejoin or change the world or
+     * {@link #unpauseAbility(Class, Player)} is called. If the player doesn't have that ability, this method does
+     * nothing.
+     *
+     * @param abilityClass class of the ability to pause
+     * @param player       player
+     */
+    void pauseAbility(Class<? extends Ability> abilityClass, Player player);
+
+    /**
+     * Adds the given ability to the player if they already had it and it was removed with
+     * {@link #pauseAbility(Class, Player)}. If the player doesn't have the ability, this method does nothing.
+     *
+     * @param abilityClass class of the ability to unpause
+     * @param player       player
+     */
+    void unpauseAbility(Class<? extends Ability> abilityClass, Player player);
 }
