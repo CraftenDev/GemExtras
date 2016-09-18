@@ -1,14 +1,16 @@
 package me.mickyjou.plugins.gems.gemextras.abilities.doublejump;
 
-import me.mickyjou.plugins.gems.gemextras.GemExtras;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 
 import java.util.HashSet;
@@ -22,15 +24,18 @@ public class DoubleJumpListener implements Listener {
         final Player player = event.getPlayer();
         if (player.getGameMode().equals(GameMode.SURVIVAL) && DoubleJumpAbility.hasAbility(player)) {
             event.setCancelled(true);
-            player.setFlying(false);
-            player.setVelocity(player.getVelocity().multiply(2.5D).setY(1.0));
-            jumping.add(player);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(GemExtras.getPlugin(GemExtras.class), new Runnable() {
-                @Override
-                public void run() {
-                    jumping.remove(player);
-                }
-            }, 4 * 20);
+            if (!jumping.contains(player)) {
+                player.setVelocity(player.getVelocity().multiply(2.5D).setY(1.0));
+                jumping.add(player);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onLand(PlayerMoveEvent event) {
+        if (jumping.contains(event.getPlayer()) &&
+                event.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR) {
+            jumping.remove(event.getPlayer());
         }
     }
 
@@ -44,5 +49,10 @@ public class DoubleJumpListener implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        jumping.remove(event.getPlayer());
     }
 }

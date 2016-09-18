@@ -14,17 +14,18 @@ public class DoubleJumpAbility implements Ability {
     public String getDisplayName() {
         return "Double Jump";
     }
-    
+
     @Override
     public void removeFrom(Player player) {
-    	player.setAllowFlight(false);
+        player.setAllowFlight(false);
+        player.setFlying(false);
     }
-    
+
     @Override
     public void giveTo(Player player) {
-    	 player.setAllowFlight(true);
+        player.setAllowFlight(true);
     }
-    
+
     static boolean hasAbility(Player player) {
         return GemExtras.getPlugin(GemExtras.class).getAbilityManager().hasAbility(DoubleJumpAbility.class, player);
     }
