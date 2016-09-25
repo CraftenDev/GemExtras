@@ -1,7 +1,7 @@
 package me.mickyjou.plugins.gems.gemextras.shop.products;
 
-import me.mickyjou.plugins.gems.gemextras.GemExtras;
 import me.mickyjou.plugins.gems.gemextras.abilities.SpeedWalkAbility;
+import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
 import me.mickyjou.plugins.gems.gemextras.shop.ProductGroup;
 import me.mickyjou.plugins.gems.gemextras.shop.SimpleProduct;
 import org.bukkit.ChatColor;
@@ -22,28 +22,28 @@ public class SpeedWalk extends ProductGroup {
         addItem(new SimpleProduct(Material.IRON_BOOTS, "Speed Walk (1 hour)", 5) {
             @Override
             public void onBought(Player player) {
-                GemExtras.getPlugin(GemExtras.class).getAbilityManager().giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(1));
+                AbilityManager.getInstance().ifPresent((am) -> am.giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(1)));
             }
         });
 
         addItem(new SimpleProduct(Material.GOLD_BOOTS, "Speed Walk (2 hours)", 8) {
             @Override
             public void onBought(Player player) {
-                GemExtras.getPlugin(GemExtras.class).getAbilityManager().giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(2));
+                AbilityManager.getInstance().ifPresent((am) -> am.giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(2)));
             }
         });
 
         addItem(new SimpleProduct(Material.DIAMOND_BOOTS, "Speed Walk (6 hours)", 20) {
             @Override
             public void onBought(Player player) {
-                GemExtras.getPlugin(GemExtras.class).getAbilityManager().giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(6));
+                AbilityManager.getInstance().ifPresent((am) -> am.giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(6)));
             }
         });
 
         addItem(new SimpleProduct(Material.CHAINMAIL_BOOTS, "Speed Walk (24 hours)", 42) {
             @Override
             public void onBought(Player player) {
-                GemExtras.getPlugin(GemExtras.class).getAbilityManager().giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(24));
+                AbilityManager.getInstance().ifPresent((am) -> am.giveAbilityTo(SpeedWalkAbility.class, player, Duration.ofHours(24)));
             }
         });
     }

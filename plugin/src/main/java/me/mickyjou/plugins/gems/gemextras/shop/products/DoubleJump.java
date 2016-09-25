@@ -1,7 +1,7 @@
 package me.mickyjou.plugins.gems.gemextras.shop.products;
 
-import me.mickyjou.plugins.gems.gemextras.GemExtras;
 import me.mickyjou.plugins.gems.gemextras.abilities.doublejump.DoubleJumpAbility;
+import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
 import me.mickyjou.plugins.gems.gemextras.shop.ProductGroup;
 import me.mickyjou.plugins.gems.gemextras.shop.SimpleProduct;
 import org.bukkit.ChatColor;
@@ -22,7 +22,7 @@ public class DoubleJump extends ProductGroup {
         addItem(new SimpleProduct(Material.SLIME_BLOCK, ChatColor.GOLD + "DoubleJump (1 hour)", 2) {
             @Override
             public void onBought(Player player) {
-                GemExtras.getPlugin(GemExtras.class).getAbilityManager().giveAbilityTo(DoubleJumpAbility.class, player, Duration.ofHours(1));
+                AbilityManager.getInstance().ifPresent((am) -> am.giveAbilityTo(DoubleJumpAbility.class, player, Duration.ofHours(1)));
             }
         });
     }

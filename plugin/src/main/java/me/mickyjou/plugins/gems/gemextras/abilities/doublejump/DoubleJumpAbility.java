@@ -1,8 +1,10 @@
 package me.mickyjou.plugins.gems.gemextras.abilities.doublejump;
 
-import me.mickyjou.plugins.gems.gemextras.GemExtras;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.Ability;
+import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
 import org.bukkit.entity.Player;
+
+import java.util.Optional;
 
 public class DoubleJumpAbility implements Ability {
     @Override
@@ -27,6 +29,7 @@ public class DoubleJumpAbility implements Ability {
     }
 
     static boolean hasAbility(Player player) {
-        return GemExtras.getPlugin(GemExtras.class).getAbilityManager().hasAbility(DoubleJumpAbility.class, player);
+        Optional<AbilityManager> abilityManager = AbilityManager.getInstance();
+        return abilityManager.isPresent() && abilityManager.get().hasAbility(DoubleJumpAbility.class, player);
     }
 }
