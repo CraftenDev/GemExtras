@@ -51,26 +51,4 @@ public class GemExtras extends JavaPlugin {
         }
         return false;
     }
-
-    /**
-     * Gets the ability manager instance.
-     *
-     * @return the ability manager
-     * @deprecated use {@link AbilityManager#getInstance()} instead
-     */
-    @Deprecated
-    public AbilityManager getAbilityManager() {
-        return abilityManager;
-    }
-
-    /**
-     * Gets the gem shop instance.
-     *
-     * @return the gem shop
-     * @deprecated use {@link GemShop#getInstance()} instead
-     */
-    @Deprecated
-    public GemShop getGemShop() {
-        return gemShop;
-    }
 }
