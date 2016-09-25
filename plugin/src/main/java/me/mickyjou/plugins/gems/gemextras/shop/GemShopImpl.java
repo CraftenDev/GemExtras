@@ -8,11 +8,11 @@ import org.bukkit.inventory.ItemStack;
 /**
  * The main view of the gem shop.
  */
-public class GemShop {
+public class GemShopImpl implements GemShop {
     private final ProductGroup products;
     private final ViewManager viewManager;
 
-    public GemShop(ViewManager viewManager) {
+    public GemShopImpl(ViewManager viewManager) {
         this.products = new ProductGroup("Gem Shop", new ItemStack(Material.AIR));
         this.viewManager = viewManager;
     }

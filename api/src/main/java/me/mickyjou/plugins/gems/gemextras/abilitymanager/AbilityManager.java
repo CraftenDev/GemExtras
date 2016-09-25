@@ -1,14 +1,28 @@
 package me.mickyjou.plugins.gems.gemextras.abilitymanager;
 
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
+import java.util.Optional;
 
 /**
  * A manager for abilities that can be given to players for a certain time.
  */
 public interface AbilityManager {
+    /**
+     * Get the {@link AbilityManager} that is registered in the current Bukkit instance.
+     *
+     * @return ability manager that is registered in the current Bukkit instance
+     */
+    static Optional<AbilityManager> getInstance() {
+        if (Bukkit.getServicesManager().isProvidedFor(AbilityManager.class)) {
+            return Optional.of(Bukkit.getServicesManager().getRegistration(AbilityManager.class).getProvider());
+        }
+        return Optional.empty();
+    }
+
     /**
      * Registers an ability.
      *
