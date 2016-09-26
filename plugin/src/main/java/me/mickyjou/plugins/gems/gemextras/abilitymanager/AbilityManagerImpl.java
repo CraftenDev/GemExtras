@@ -118,6 +118,11 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
     }
 
     @Override
+    public void pauseAllAbilities(Player player) {
+        abilities.keySet().forEach(ability -> pauseAbility(ability, player));
+    }
+
+    @Override
     public void unpauseAbility(Class<? extends Ability> abilityClass, Player player) {
         pausedAbilities.remove(player, abilityClass);
         if (!playerAbilities.get(player).contains(abilityClass)) {
@@ -133,6 +138,11 @@ public class AbilityManagerImpl implements AbilityManager, Listener {
                 // ignore
             }
         }
+    }
+
+    @Override
+    public void unpauseAllAbilities(Player player) {
+        pausedAbilities.removeAll(player).forEach(ability -> unpauseAbility(ability, player));
     }
 
     @EventHandler

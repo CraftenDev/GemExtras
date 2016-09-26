@@ -69,6 +69,15 @@ public interface AbilityManager {
     void pauseAbility(Class<? extends Ability> abilityClass, Player player);
 
     /**
+     * Removes all abilities from the player until they rejoin or change the world or
+     * {@link #unpauseAbility(Class, Player)} is called. If the player doesn't have that ability, this method does
+     * nothing.
+     *
+     * @param player player
+     */
+    void pauseAllAbilities(Player player);
+
+    /**
      * Adds the given ability to the player if they already had it and it was removed with
      * {@link #pauseAbility(Class, Player)}. If the player doesn't have the ability, this method does nothing.
      *
@@ -76,4 +85,11 @@ public interface AbilityManager {
      * @param player       player
      */
     void unpauseAbility(Class<? extends Ability> abilityClass, Player player);
+
+    /**
+     * Unpauses all previously paused abilities.
+     *
+     * @param player player
+     */
+    void unpauseAllAbilities(Player player);
 }
