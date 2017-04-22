@@ -16,11 +16,11 @@ public class SpeedWalkAbility implements Ability {
 
     @Override
     public void giveTo(Player player) {
-        player.setWalkSpeed(3);
+        player.setWalkSpeed(0.3f);
     }
 
     @Override
     public void removeFrom(Player player) {
-        player.setWalkSpeed(1);
+        player.setWalkSpeed(0.1f);
     }
 }
